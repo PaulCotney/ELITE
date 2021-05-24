@@ -25,7 +25,7 @@ Prepare input data:
 3. Reference genome: (a sample genome Reference.fa is given in root folder)
     - The reference genome of the sample species
 
-Required parameters for running ELITE:
+4. Required parameters for running ELITE:
     - sample_list: link to the .csv file containing the sample's information
     - te_file: link to the .csv file containing the TE templates information
     - reference: link to the reference genome file
