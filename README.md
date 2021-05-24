@@ -6,7 +6,7 @@ Pre-requisite for running ELITE:
 2. Install bowtie from here: http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml
 3. Install Levenshtein python package from here: https://pypi.org/project/python-Levenshtein/
 4. Build msBWT from short-read  (a sample msbwt is given in the sample_bwt folder)
-    a. Follow instructions from here https://github.com/holtjma/msbwt
+    - Follow instructions from here https://github.com/holtjma/msbwt
 
 Prepare input data:
 
@@ -27,12 +27,12 @@ Prepare input data:
 
 Required parameters for running ELITE:
     - sample_list: link to the .csv file containing the sample's information
-    b. te_file: link to the .csv file containing the TE templates information
-    c. reference: link to the reference genome file
-    d. species: name of your samples' species
-    e. C: length of TE's context which is the segment of non-TE sequence right next to a TE sequence [C = 25 recommended]
-    f. T: length of proximal and distal TE length which is the segment of TE sequence right next to a context [C + T must be less than half of read length]
-    g. K: length of seed [25 recommended]
+    - te_file: link to the .csv file containing the TE templates information
+    - reference: link to the reference genome file
+    - species: name of your samples' species
+    - C: length of TE's context which is the segment of non-TE sequence right next to a TE sequence [C = 25 recommended]
+    - T: length of proximal and distal TE length which is the segment of TE sequence right next to a context [C + T must be less than half of read length]
+    - K: length of seed [25 recommended]
     
 a sample script runELITE.sh is given to run ELITE using the sample data. 
 It will automatically create bowtie index if not already built. 
