@@ -1,5 +1,7 @@
 # ELITE
 
+ELITE is written in python.
+
 Pre-requisite for running ELITE:
 
 1. Install msBWT from here: https://github.com/holtjma/msbwt
@@ -37,6 +39,6 @@ Prepare input data:
     
 a sample script runELITE.sh is given to run ELITE using the sample data. 
 It will automatically create bowtie index if not already built. 
-But if you have it built, you must use the same reference genome that will be used here.
+You must use the same reference genome for building bowtie and running all the steps of ELITE.
 
 For running ELITE, simply modify runELITE.sh with appropriate parameters and execute it.
