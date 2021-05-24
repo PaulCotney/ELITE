@@ -10,23 +10,23 @@ Pre-requisite for running ELITE:
 
 Prepare input data:
 
-1. Create a .csv file with the following information for each sample:
+1. Create a .csv file with the following information for each sample: (a sample file sample_list.csv is given in the sample_data folder)
     - sample name: name of you sample
     - msBWT directory: directory where the sample's msBWT is located
     - threshold: minimum number of supporting split-reads with TE
-    (a sample file sample_list.csv is given in the sample_data folder)
+    
     
 2. Create a .csv file containing the TE templates: (a sample file TEseq.csv is given in the sample_data folder)
-    a. my_id: name of the TE template
-    b. TE: sequence of the TE
-    c. start_seed: seed kmer (lengths between 21-35) near the TE's proximal boundary [empty string if you want ELITE to find the optimal seed]
-    d. end_seed: seed kmer (lengths between 21-35) near the TE's distal boundary [empty string if you want ELITE to find the optimal seed]
+    - my_id: name of the TE template
+    - TE: sequence of the TE
+    - start_seed: seed kmer (lengths between 21-35) near the TE's proximal boundary [empty string if you want ELITE to find the optimal seed]
+    - end_seed: seed kmer (lengths between 21-35) near the TE's distal boundary [empty string if you want ELITE to find the optimal seed]
     
 3. Reference genome: (a sample genome Reference.fa is given in root folder)
-    a. The reference genome of the sample species
+    - The reference genome of the sample species
 
 Required parameters for running ELITE:
-    a. sample_list: link to the .csv file containing the sample's information
+    - sample_list: link to the .csv file containing the sample's information
     b. te_file: link to the .csv file containing the TE templates information
     c. reference: link to the reference genome file
     d. species: name of your samples' species
