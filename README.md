@@ -11,9 +11,9 @@ Pre-requisite for running ELITE:
 Prepare input data:
 
 1. Create a .csv file with the following information for each sample: (a sample file sample_list.csv is given in the sample_data folder)
-    a. sample name: name of you sample
-    b. msBWT directory: directory where the sample's msBWT is located
-    c. threshold: minimum number of supporting split-reads with TE
+    1.1. sample name: name of you sample
+    1.2. msBWT directory: directory where the sample's msBWT is located
+    1.3. threshold: minimum number of supporting split-reads with TE
     
 2. Create a .csv file containing the TE templates: (a sample file TEseq.csv is given in the sample_data folder)
     a. my_id: name of the TE template
