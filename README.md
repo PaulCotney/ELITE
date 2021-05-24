@@ -26,10 +26,11 @@ Prepare input data:
     - The reference genome of the sample species
 
 4. Required parameters for running ELITE:
-    - sample_list: link to the .csv file containing the sample's information
-    - te_file: link to the .csv file containing the TE templates information
-    - reference: link to the reference genome file
-    - species: name of your samples' species
+    - sample_list: path to the .csv file containing the sample's information
+    - te_file: path to the .csv file containing the TE templates information
+    - reference: path to the reference genome file
+    - bowtie_dir: path to the bowtie index of reference genome
+    - species: name of your bowtie index
     - C: length of TE's context which is the segment of non-TE sequence right next to a TE sequence [C = 25 recommended]
     - T: length of proximal and distal TE length which is the segment of TE sequence right next to a context [C + T must be less than half of read length]
     - K: length of seed [25 recommended]
