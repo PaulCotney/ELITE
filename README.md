@@ -38,3 +38,5 @@ Prepare input data:
 a sample script runELITE.sh is given to run ELITE using the sample data. 
 It will automatically create bowtie index if not already built. 
 But if you have it built, you must use the same reference genome that will be used here.
+
+For running ELITE, simply modify runELITE.sh with appropriate parameters and execute it.
