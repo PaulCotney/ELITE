@@ -1,5 +1,3 @@
-#!/bin/bash
-
 import gzip
 import time
 import pandas as pd
