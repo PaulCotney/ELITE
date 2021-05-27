@@ -1,3 +1,6 @@
+#import sys
+#sys.path.insert(0, "/nas/longleaf/home/anwica/packages/msbwt-0.3.0-py2.7-linux-x86_64.egg")
+
 import numpy as np
 import pandas as pd
 import sys
