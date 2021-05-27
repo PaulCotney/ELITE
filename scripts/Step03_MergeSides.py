@@ -1,3 +1,5 @@
+#!/bin/bash
+
 import numpy as np
 import pandas as pd
 import sys
@@ -279,13 +281,14 @@ def merge_close_pos(sample, d, ref_te):
                 clusters[-1] = ((new_cluster_rep, cluster_mem))
             else:
                 clusters.append((new_cluster_rep, [new_cluster_rep]))
-        cluster_by_chromo = [(chromo,i[0],i[1]) for i in clusters]
+        cluster_by_chromo = cluster_by_chromo + [(chromo,i[0],i[1]) for i in clusters]
     
     pos_to_TEi_id = {}
     for TEi_id,(chromo,cluster_rep,cluster_mem) in enumerate(cluster_by_chromo):
         for mem in cluster_mem:
             pos_to_TEi_id[(chromo,mem)] = TEi_id
             
+    print len(pos_to_TEi_id)
     filename = 'tmp/FinalOutput/%s_%d.csv' %(sample,ref_te)
     df = pd.read_csv(filepath_or_buffer=filename, sep=',',dtype= {'chromo': str, 'pos': int})
     df = df.replace(np.nan, '', regex=True)
@@ -293,6 +296,8 @@ def merge_close_pos(sample, d, ref_te):
     header = list(df)
     data = df.iloc[:,].values
     for my_id,side,chromo,pos,strand,context,TE,FDR in data:
+        if (chromo,pos) not in pos_to_TEi_id.keys():
+            continue
         TEi_id = pos_to_TEi_id[(chromo,pos)]
         new_data.append([TEi_id,my_id,side,chromo,pos,strand,context,TE,FDR])
     
