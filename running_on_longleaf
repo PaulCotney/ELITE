@@ -11,8 +11,8 @@
 module add python/2.7.12
 module add bowtie2/2.4.1
 
-#adding msBWT path
-#!/bin/bash
+#Adding msBWT path
 
+#!/bin/bash
 import sys
 sys.path.insert(0, "/nas/longleaf/home/your_onyen/packages/msbwt-0.3.0-py2.7-linux-x86_64.egg")
