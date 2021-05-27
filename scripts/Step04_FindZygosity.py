@@ -60,6 +60,7 @@ def get_zygosity(sample, bwtfile, threshold, expected_length, ref_te):
     kmer_list = get_kmers(sample,ref_te)
     zygosity_data = []
     zygo_dict = {}
+    other_context = {}
     for TEi_id,my_id,side,chromo,pos,strand,ref_te,context,TE,TSD in kmer_list:
         #if (TEi_id, ref_te) != (47,0):
         #    continue
@@ -69,21 +70,26 @@ def get_zygosity(sample, bwtfile, threshold, expected_length, ref_te):
         context_List = set()
         context_List = growContext(msbwt, lo, hi, '', oc_length, context_List)
         zygo_dict[TEi_id] = zygo_dict.get(TEi_id,set([1]))
+        
         for oc in context_List:
             oc = MultiStringBWT.reverseComplement(oc) if side == 'start' else oc
             ed = lv.distance(oc,TE[:oc_length]) if side == 'start' else lv.distance(oc,TE[-oc_length:])
+            TE = TE[:oc_length] if side == 'start' else TE[-oc_length:]
+
             if ed > ed_th:
                 zygo_dict[TEi_id] = zygo_dict[TEi_id] | set([0])
+                other_context[TEi_id] = oc
         zygosity_data.append([TEi_id,my_id,side,chromo,pos,strand,ref_te,context,TE,TSD])
     
     individual_file = "IndividualAnalysis/%s_%s.csv" %(sample,ref_te)
     zygosity_data.sort(key=lambda x:(x[3],x[4]))
-    header = ['TEi_id', 'my_id', 'side', 'chromo', 'pos', 'strand', 'ref_te', 'context','TE','TSD', 'zygosity']
+    header = ['TEi_id', 'my_id', 'side', 'chromo', 'pos', 'strand', 'ref_te', 'context','TE','TSD', 'other_context', 'zygosity']
     with open(individual_file,'wb') as fp:
         a = csv.writer(fp,delimiter=',')
         a.writerows([header])
         for d in zygosity_data:
             zygosity = 'heterozygous' if len(zygo_dict[d[0]]) == 2 else 'homozygous'
+            d.append(other_context.get(d[0], ''))
             d.append(zygosity)
             a.writerows([d])
     print "Wrote file: %s [%d lines]" %(individual_file, len(zygosity_data))
