@@ -1,3 +1,4 @@
+#!/bin/bash
 import numpy as np
 import pandas as pd
 import sys
@@ -39,10 +40,10 @@ def getSamples(sample_file):
 def get_te_info(te_file):
     df = pd.read_csv(filepath_or_buffer=te_file, sep=',')
     df = df.replace(np.nan, '', regex=True)
-    data = df.loc[:,['my_id', 'TE']].values
+    data = df.loc[:,['my_id', 'TE', 'start_seed', 'end_seed']].values
     te_data = []
-    for my_id,TE in data:
-        te_data.append((my_id,TE))
+    for my_id,TE,start_seed,end_seed in data:
+        te_data.append((my_id,TE,start_seed,end_seed))
     return te_data
 
 def get_kmer_count(msbwt,kmer):
@@ -202,8 +203,12 @@ def solve(sample,bwtfile,te_list_part,T,K,expected_length,threshold):
     print sample, bwtfile
     msbwt = MultiStringBWT.loadBWT(bwtfile, useMemmap=False)
     print "loaded bwt in %s" %(time.time()-start_time)
-    for (my_id,TE) in te_list_part:
-        start_seed, startTE, end_seed, endTE = getSeed(sample, msbwt, TE, T, K)
+    for (my_id,TE,start_seed,end_seed) in te_list_part:
+        if start_seed == '' or end_seed == '':
+            start_seed, startTE, end_seed, endTE = getSeed(sample, msbwt, TE, T, K)
+        else:
+            startTE, endTE = TE[:T], TE[-T:]
+        print my_id,TE,start_seed,end_seed, startTE, endTE
         for side in ["start", "end"]:
             getContext(sample,msbwt,start_seed,startTE,end_seed,endTE,T,expected_length,side,threshold,my_id)
             
