@@ -6,7 +6,7 @@
 #SBATCH -n 1
 #SBATCH -t 01:00:00
 #SBATCH --mail-type=end
-#SBATCH --mail-user=anwica@email.unc.edu
+#SBATCH --mail-user=your_onyen@email.unc.edu
 
 module add python/2.7.12
 module add bowtie2/2.4.1
@@ -15,4 +15,4 @@ module add bowtie2/2.4.1
 #!/bin/bash
 
 import sys
-sys.path.insert(0, "/nas/longleaf/home/anwica/packages/msbwt-0.3.0-py2.7-linux-x86_64.egg")
+sys.path.insert(0, "/nas/longleaf/home/your_onyen/packages/msbwt-0.3.0-py2.7-linux-x86_64.egg")
