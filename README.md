@@ -42,3 +42,10 @@ It will automatically create bowtie index if not already built.
 You must use the same reference genome for building bowtie and running all the steps of ELITE.
 
 For running ELITE, simply modify runELITE.sh with appropriate parameters and execute it.
+
+For longleaf user, add msBWT path:
+
+#!/bin/bash
+
+import sys
+sys.path.insert(0, "/nas/longleaf/home/anwica/packages/msbwt-0.3.0-py2.7-linux-x86_64.egg")
