@@ -3,7 +3,7 @@
 sample_list=./sample_data/sample_list.csv
 te_file=./sample_data/TEseq.csv
 reference=./sample_data/Reference.fa
-bowtie_dir=./bowtie_mouse
+bowtie_dir=./bowtie
 species=mouse
 C=25
 T=80
