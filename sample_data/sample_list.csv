@@ -1,2 +1,2 @@
 sample,bwtfile,threshold
-test,/csbiohome/mcmillan/Notebooks/Anwica/ELITE/sample_bwt,4
+test,./sample_data/sample_bwt,4
