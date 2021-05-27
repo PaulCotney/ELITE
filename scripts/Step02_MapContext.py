@@ -1,3 +1,5 @@
+#!/bin/bash
+
 import gzip
 import time
 import pandas as pd
@@ -42,7 +44,7 @@ def loadFasta(filename):
     sequences = []
     for sequence in data:
         lines = sequence.split('\n')
-        headers.append(lines.pop(0))
+        headers.append(lines.pop(0).split()[0])
         # add an extra "+" to make string "1-referenced"
         sequences.append('+' + ''.join(lines))
     return (headers, sequences)
@@ -76,9 +78,9 @@ def merge_contexts(sample, side):
             a.writerows([[my_id,context,te]])
     print "Wrote file: %s [%d lines]\n" %(infile, len(context_set)) 
     
-def TestForUnique(sample,side,species,expected_length):
+def TestForUnique(sample,side,bowtie_dir,species,expected_length):
     global genome
-    bt2cmd = "bowtie2 -x ./bowtie_%s/%s --no-head -r --end-to-end -k 4 %s.seq > %s.sam"
+    bt2cmd = "bowtie2 -x %s/%s --no-head -r --end-to-end -k 4 %s.seq > %s.sam"
     designfile = "tmp/bowtie_data/%s_%s.csv" %(sample,side)
     
     t = designfile.rfind('.')
@@ -98,11 +100,11 @@ def TestForUnique(sample,side,species,expected_length):
     fp.close()
     print "Wrote %s (%d lines)" % (outfile, N)
     sys.stdout.flush()
-    code = subprocess.call(bt2cmd % (species, species, root, root), shell=True)
+    code = subprocess.call(bt2cmd % (bowtie_dir, species, root, root), shell=True)
     if (code == 0):
         print "Alignment completed"
     else:
-        print "Alignment failed:" + (bt2cmd % (species, root, root))
+        print "Alignment failed:" + (bt2cmd % (bowtie_dir, species, root, root))
         return
     
     samfile = outfile.replace('.seq', '.sam')
@@ -158,7 +160,7 @@ def TestForUnique(sample,side,species,expected_length):
     # ['id', 'side', 'context', 'chromo', 'pos', 'strand']
     for d in data:
         [my_id,context,te,chromo,pos,strand] = d[0:6]
-        #chromo = chromo[3:]
+        chromo = chromo[3:]
         if chromo not in genome.keys():
             continue
         plen = len(context)
@@ -204,7 +206,7 @@ def TestForUnique(sample,side,species,expected_length):
         for d in new_data:
             a.writerows([d])
     remove_duplicates(finalfile)
-    
+    return
     command = "rm ./tmp/bowtie_data/*.seq"
     rval = os.system(command)
     command = "rm ./tmp/bowtie_data/*.sam"
@@ -227,18 +229,21 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('sample_file', help='List of Sample and corresponding bwtdir')
     parser.add_argument('reference', help='Path to reference sequence')
+    parser.add_argument('bowtie_dir', help='directory of bowtie index of reference genome')
     parser.add_argument('species', help='Name of species')
     parser.add_argument('C', help='Expected length of context')
     args = parser.parse_args()
     
     sample_file = args.sample_file
     reference = args.reference
+    bowtie_dir = args.bowtie_dir
     species = args.species
     C = int(args.C)
     
     print "Path to SampleList: %s" %sample_file
     print "Path to REF: %s" %reference
     print "Name of species: %s" %species
+    print "Path to the bowtie index: %s" %bowtie_dir
     print "expected length of context: %d" %C
     
     global genome
@@ -250,7 +255,6 @@ if __name__ == "__main__":
     print "Reference sequence loaded in %s sec" %(time.time()-start_time)
     print genome.keys()
     
-    bowtie_dir = "./bowtie_%s" %(species)
     if not os.path.exists(bowtie_dir):
         print "Need to build bowtie index"
         command = "mkdir %s" %bowtie_dir
@@ -268,5 +272,5 @@ if __name__ == "__main__":
         merge_contexts(sample, 'start')
         merge_contexts(sample, 'end')
 
-        TestForUnique(sample, 'start', species, C)
-        TestForUnique(sample, 'end', species, C)
+        TestForUnique(sample, 'start', bowtie_dir, species, C)
+        TestForUnique(sample, 'end', bowtie_dir, species, C)
