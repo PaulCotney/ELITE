@@ -1,4 +1,4 @@
-#Adding modules
+#Adding modules [prepend these lines in runELITE.sh]
 
 #!/bin/bash
 #SBATCH -p general
@@ -11,7 +11,7 @@
 module add python/2.7.12
 module add bowtie2/2.4.1
 
-#Adding msBWT path
+#Adding msBWT path [prepend these lines in all the python scripts]
 
 #!/bin/bash
 import sys
