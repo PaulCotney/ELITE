@@ -159,7 +159,8 @@ def TestForUnique(sample,side,bowtie_dir,species,expected_length):
     for d in data:
         [my_id,context,te,chromo,pos,strand] = d[0:6]
         # Remove the prepedended "CHR"
-        # chromo = chromo[3:]
+        if chromo[0:2].lower() == 'chr':
+            chromo = chromo[3:]
         if chromo not in genome.keys():
             continue
         plen = len(context)
