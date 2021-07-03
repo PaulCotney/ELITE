@@ -78,7 +78,7 @@ def merge_contexts(sample, side):
     
 def TestForUnique(sample,side,bowtie_dir,species,expected_length):
     global genome
-    bt2cmd = "bowtie2 -x %s/%s --no-head -r --end-to-end -k 4 %s.seq > %s.sam"
+    bt2cmd = "module load python/3.5.1;bowtie2 -x %s/%s --no-head -r --end-to-end -k 4 %s.seq > %s.sam"
     designfile = "tmp/bowtie_data/%s_%s.csv" %(sample,side)
     
     t = designfile.rfind('.')
@@ -226,7 +226,6 @@ def remove_duplicates(finalfile):
     
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser = argparse.ArgumentParser()
     parser.add_argument('sample_file', help='List of Sample and corresponding bwtdir')
     parser.add_argument('reference', help='Path to reference sequence')
     parser.add_argument('bowtie_dir', help='directory of bowtie index of reference genome')
@@ -259,7 +258,7 @@ if __name__ == "__main__":
         print "Need to build bowtie index"
         command = "mkdir %s" %bowtie_dir
         rval = os.system(command)
-        build_command = "bowtie2-build %s ./%s/%s" %(reference,bowtie_dir,species)
+        build_command = "module load python/3.5.1;bowtie2-build %s ./%s/%s" %(reference,bowtie_dir,species)
         rval = os.system(build_command)
 
     command = "mkdir ./tmp/bowtie_data"

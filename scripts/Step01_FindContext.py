@@ -225,6 +225,8 @@ def run(sample_file,te_file,expected_length,T,K):
         print "Total time for %s: %s\n" %(sample, time.time()-start_time)
         
 if __name__ == "__main__":
+
+    print("Check A")
     parser = argparse.ArgumentParser()
     parser.add_argument('sample_file', help='List of Sample and corresponding bwtdir')
     parser.add_argument('te_file', help='Path to TE Template')
@@ -232,7 +234,7 @@ if __name__ == "__main__":
     parser.add_argument('T', help='Length of proximal and distal TE')
     parser.add_argument('K', help='Length of proximal and distal seed')
     args = parser.parse_args()
-    
+    print("Check B")
     sample_file = args.sample_file
     te_file = args.te_file
     C = int(args.C)
