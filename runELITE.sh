@@ -3,7 +3,7 @@ module add bowtie2/2.4.1
 module list
 
 sample_list=./sample_data/sample_list.csv
-te_file=./sample_data/TEseq_new_seeds.csv
+te_file=./sample_data/TEseq_seed.csv
 reference=/pine/scr/a/n/anwica/reference/GRCm38_68.fa
 bowtie_dir=./bowtie
 species=mouse

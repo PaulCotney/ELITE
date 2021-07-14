@@ -1,2 +1,3 @@
 sample,bwtfile,threshold
-test,./sample_data/sample_bwt,4
+OR3640_POOL_AF,/proj/mcmillanlab/data/BWTs/OR3640poolAF,1
+OR3640_POOL_UN,/proj/mcmillanlab/data/BWTs/OR3640poolUN,1
