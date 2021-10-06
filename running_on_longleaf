@@ -1,2 +1,2 @@
 #!/bin/bash
-sbatch -p general --mem 100G -n 1 -t 2-00:00:00 --wrap "./runELITE.sh"
+sbatch -p general --job-name=ELITE -o ELITE.out --mem 100G -n 1 -t 2-00:00:00 --wrap "./runELITE.sh"
