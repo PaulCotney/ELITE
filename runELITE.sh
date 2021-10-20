@@ -2,8 +2,8 @@
 module add bowtie2/2.4.1
 module list
 
-sample_list=./sample_data/sample_list.csv
-te_file=./sample_data/TEseq_seed.csv
+sample_list=./data/samples_cc.csv
+te_file=./data/TEall_seeds.csv
 reference=./data/GRCm38_68.fa
 bowtie_dir=./bowtie
 species=mouse
