@@ -6,7 +6,7 @@ import sqlite3
 import os
 import time
 import glob
-import Levenshtein as lv
+from rapidfuzz import levenshtein as lv
 import pysam
 import MUSCython
 import MUSCython.MultiStringBWTCython as MultiStringBWT

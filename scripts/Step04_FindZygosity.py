@@ -11,7 +11,7 @@ import MUSCython
 import MUSCython.MultiStringBWTCython as MultiStringBWT
 import os
 import glob
-import Levenshtein as lv
+from rapidfuzz import levenshtein as lv
 import subprocess
 from string import maketrans
 import argparse
