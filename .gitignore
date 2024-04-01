@@ -3,4 +3,6 @@ IndividualAnalysis
 *.pyc
 .DS_Store
 .idea/
-data
+bowtie
+data/*.fa
+ELITE.out
