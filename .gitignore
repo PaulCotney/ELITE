@@ -1,3 +1,5 @@
 tmp
 IndividualAnalysis
 *.pyc
+.DS_Store
+.idea/
