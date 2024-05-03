@@ -4,3 +4,4 @@ IndividualAnalysis
 bowtie
 data/*.fa
 ELITE.out
+.DS_Store
