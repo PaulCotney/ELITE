@@ -1,6 +1,8 @@
 tmp
 IndividualAnalysis
 *.pyc
+.DS_Store
+.idea/
 bowtie
 data/*.fa
 ELITE.out
